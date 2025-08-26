@@ -4,6 +4,9 @@ import base64
 
 emailList=["dhawalabiz2002@gmail.com"]
 
+
+
+
 def get_email_body(payload, headers):
     """
     Extracts the email body. If the email is a reply, returns only the latest reply text.
