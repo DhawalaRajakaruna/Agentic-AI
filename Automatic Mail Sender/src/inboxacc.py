@@ -2,10 +2,8 @@
 from email.utils import parseaddr
 import base64
 
+#Need to connect database for this 
 emailList=["dhawalabiz2002@gmail.com"]
-
-
-
 
 def get_email_body(payload, headers):
     """
@@ -70,6 +68,7 @@ def read_inbox(service):
 
     if not messages:
         print("No new emails.")
+        return None, None, None, None
     else:
         for msg in messages:
             # Get the message details
@@ -92,6 +91,12 @@ def read_inbox(service):
             _, email_address = parseaddr(sender) 
 
             if email_address in emailList:
+                # Mark the email as read
+                service.users().messages().modify(
+                    userId='me', 
+                    id=msg['id'], 
+                    body={'removeLabelIds': ['UNREAD']}
+                ).execute()
                 return subject.lower().startswith("re:"), email_address, subject, body
     
     # If no matching email is found, return None values
