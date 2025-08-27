@@ -1,0 +1,1 @@
+Generatemail(email_address, subject, body)

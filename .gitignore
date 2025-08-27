@@ -2,5 +2,5 @@ client_secret.json
 gmail_token.json
 token.json
 __pycache__/    
-env/
+.env
 venv/
